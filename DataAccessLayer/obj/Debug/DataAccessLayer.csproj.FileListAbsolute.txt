@@ -1,0 +1,12 @@
+C:\Users\yasuo\source\repos\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\yasuo\source\repos\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\yasuo\source\repos\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\yasuo\source\repos\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\yasuo\source\repos\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\yasuo\source\repos\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+D:\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+D:\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+D:\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+D:\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
