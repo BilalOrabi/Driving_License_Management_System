@@ -31,3 +31,22 @@ D:\DVLD\obj\Debug\DVLD.frmPeople.resources
 D:\DVLD\obj\Debug\DVLD.frmMain.resources
 D:\DVLD\obj\Debug\DVLD.ctrlPersonCard.resources
 D:\DVLD\obj\Debug\DVLD.People.frmAddUpdatePerson.resources
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\DVLD.exe.config
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\DVLD.exe
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\DVLD.pdb
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\BusinessLogicLayer.dll
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\DataAccessLayer.dll
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\bin\Debug\DataAccessLayer.pdb
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\PresentationLayer.csproj.AssemblyReference.cache
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.People.frmAddUpdatePerson.resources
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.ctrlPersonCard.resources
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.frmPeople.resources
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.frmMain.resources
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.Properties.Resources.resources
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\PresentationLayer.csproj.GenerateResource.cache
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\PresentationLayer.csproj.CoreCompileInputs.cache
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\Presenta.9C561136.Up2Date
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.exe
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.pdb
+C:\Users\yasuo\source\Github Projects\DVLD@\DVLD\obj\Debug\DVLD.exe.config
