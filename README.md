@@ -15,7 +15,7 @@ The Driving & Vehicle License Department (DVLD) system is designed to manage the
 - **Framework**: WindForm (built on .Net 8)  
 - **Programming Language**: C#  
 - **Data Access**: ADO.NET
-- - **Architecture**: The system follows a **3-Tier Architecture**:  
+- **Architecture**: The system follows a **3-Tier Architecture**:  
   1. **Presentation Layer**: Handles the user interface (UI) and interactions with the system.  
   2. **Business Logic Layer**: Contains the business logic and rules governing the application.  
   3. **Data Access Layer**: Responsible for interacting with the database and ensuring efficient data retrieval and manipulation.
