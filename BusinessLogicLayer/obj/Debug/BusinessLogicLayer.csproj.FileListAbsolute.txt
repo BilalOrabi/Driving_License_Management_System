@@ -25,3 +25,12 @@ C:\Users\yasuo\source\Github Projects\DVLD@\BusinessLogicLayer\obj\Debug\Busines
 C:\Users\yasuo\source\Github Projects\DVLD@\BusinessLogicLayer\obj\Debug\Business.450209FB.Up2Date
 C:\Users\yasuo\source\Github Projects\DVLD@\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
 C:\Users\yasuo\source\Github Projects\DVLD@\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
+D:\19 Project\dvd\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+D:\19 Project\dvd\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+D:\19 Project\dvd\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+D:\19 Project\dvd\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+D:\19 Project\dvd\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.AssemblyReference.cache
+D:\19 Project\dvd\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CoreCompileInputs.cache
+D:\19 Project\dvd\BusinessLogicLayer\obj\Debug\Business.450209FB.Up2Date
+D:\19 Project\dvd\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+D:\19 Project\dvd\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb

@@ -16,3 +16,9 @@ C:\Users\yasuo\source\Github Projects\DVLD@\DataAccessLayer\obj\Debug\DataAccess
 C:\Users\yasuo\source\Github Projects\DVLD@\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
 C:\Users\yasuo\source\Github Projects\DVLD@\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 C:\Users\yasuo\source\Github Projects\DVLD@\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\19 Project\dvd\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+D:\19 Project\dvd\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+D:\19 Project\dvd\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+D:\19 Project\dvd\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\19 Project\dvd\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+D:\19 Project\dvd\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

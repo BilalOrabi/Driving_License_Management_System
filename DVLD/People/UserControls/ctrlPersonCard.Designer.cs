@@ -108,7 +108,6 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Person Information";
-         
             // 
             // llEditPersonInfo
             // 
@@ -120,6 +119,7 @@
             this.llEditPersonInfo.TabIndex = 139;
             this.llEditPersonInfo.TabStop = true;
             this.llEditPersonInfo.Text = "Edit Person Info";
+            this.llEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPersonInfo_LinkClicked);
             // 
             // lblCountry
             // 
@@ -414,12 +414,12 @@
             this.pbPersonImage.TabIndex = 112;
             this.pbPersonImage.TabStop = false;
             // 
-            // ctrlAddUpdatePerson
+            // ctrlPersonCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.Name = "ctrlAddUpdatePerson";
+            this.Name = "ctrlPersonCard";
             this.Size = new System.Drawing.Size(839, 300);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

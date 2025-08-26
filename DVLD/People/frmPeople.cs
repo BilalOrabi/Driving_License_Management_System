@@ -127,5 +127,10 @@ namespace DVLD
             lblRecordNumber.Text = dgvALLPeople.RowCount.ToString();
 
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

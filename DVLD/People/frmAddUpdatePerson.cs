@@ -17,7 +17,7 @@ namespace DVLD.People
         public event DataBackEventHandler DataBack;
         public enum enMode {AddNew = 1 ,Update = 2 }
         private enMode _Mode;
-        private int _PersonID = -1;
+        private int _PersonID = -1; 
         private clsPeople _Person;
         public frmAddUpdatePerson()
         {

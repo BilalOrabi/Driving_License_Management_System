@@ -7,10 +7,10 @@ namespace DataAccessLayer
 {
     public class clsPeopleData
     {
-        public static bool FindPersonByID(int PersonID, ref string NationalNo, ref string FirstName,
-            ref string SecondName, ref string ThirdName, ref string LastName,
-            ref string Email, ref string Phone, ref string Address,
-            ref DateTime DateOfBirth, ref int NationalityCountryID, ref string ImagePath)
+        public static bool GetPersonInfoByID(int PersonID, ref string FirstName, ref string SecondName,
+          ref string ThirdName, ref string LastName, ref string NationalNo, ref DateTime DateOfBirth,
+           ref byte Gendor, ref string Address, ref string Phone, ref string Email,
+           ref int NationalityCountryID, ref string ImagePath)
         {
             bool isFound = false;
 
@@ -32,15 +32,127 @@ namespace DataAccessLayer
                     // The record was found
                     isFound = true;
 
-                    NationalNo = (string)reader["NationalNo"];
                     FirstName = (string)reader["FirstName"];
                     SecondName = (string)reader["SecondName"];
-                    ThirdName = (string)reader["ThirdName"];
+
+                    //ThirdName: allows null in database so we should handle null
+                    if (reader["ThirdName"] != DBNull.Value)
+                    {
+                        ThirdName = (string)reader["ThirdName"];
+                    }
+                    else
+                    {
+                        ThirdName = "";
+                    }
+
                     LastName = (string)reader["LastName"];
-                    Email = (string)reader["Email"];
-                    Phone = (string)reader["Phone"];
-                    Address = (string)reader["Address"];
+                    NationalNo = (string)reader["NationalNo"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
+                    Gendor = (byte)reader["Gendor"];
+                    Address = (string)reader["Address"];
+                    Phone = (string)reader["Phone"];
+
+
+                    //Email: allows null in database so we should handle null
+                    if (reader["Email"] != DBNull.Value)
+                    {
+                        Email = (string)reader["Email"];
+                    }
+                    else
+                    {
+                        Email = "";
+                    }
+
+                    NationalityCountryID = (int)reader["NationalityCountryID"];
+
+                    //ImagePath: allows null in database so we should handle null
+                    if (reader["ImagePath"] != DBNull.Value)
+                    {
+                        ImagePath = (string)reader["ImagePath"];
+                    }
+                    else
+                    {
+                        ImagePath = "";
+                    }
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+        public static bool GetPersonInfoByNationalNo(string NationalNo, ref int PersonID, ref string FirstName, ref string SecondName,
+         ref string ThirdName, ref string LastName, ref DateTime DateOfBirth,
+         ref byte Gendor, ref string Address, ref string Phone, ref string Email,
+            ref int NationalityCountryID, ref string ImagePath)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM People WHERE NationalNo = @NationalNo";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+                    PersonID = (int)reader["PersonID"];
+                    FirstName = (string)reader["FirstName"];
+                    SecondName = (string)reader["SecondName"];
+
+                    //ThirdName: allows null in database so we should handle null
+                    if (reader["ThirdName"] != DBNull.Value)
+                    {
+                        ThirdName = (string)reader["ThirdName"];
+                    }
+                    else
+                    {
+                        ThirdName = "";
+                    }
+
+                    LastName = (string)reader["LastName"];
+                    DateOfBirth = (DateTime)reader["DateOfBirth"];
+                    Gendor = (byte)reader["Gendor"];
+                    Address = (string)reader["Address"];
+                    Phone = (string)reader["Phone"];
+
+                    //Email: allows null in database so we should handle null
+                    if (reader["Email"] != DBNull.Value)
+                    {
+                        Email = (string)reader["Email"];
+                    }
+                    else
+                    {
+                        Email = "";
+                    }
+
                     NationalityCountryID = (int)reader["NationalityCountryID"];
 
                     //ImagePath: allows null in database so we should handle null
@@ -189,7 +301,21 @@ namespace DataAccessLayer
         public static DataTable GetAllPeople()
         {
             DataTable dt = new DataTable();
-            string query = "SELECT * FROM People";
+            string query =
+              @"SELECT People.PersonID, People.NationalNo,
+              People.FirstName, People.SecondName, People.ThirdName, People.LastName,
+			  People.DateOfBirth, People.Gendor,  
+				  CASE
+                  WHEN People.Gendor = 0 THEN 'Male'
+
+                  ELSE 'Female'
+
+                  END as GendorCaption ,
+			  People.Address, People.Phone, People.Email, 
+              People.NationalityCountryID, Countries.CountryName, People.ImagePath
+              FROM            People INNER JOIN
+                         Countries ON People.NationalityCountryID = Countries.CountryID
+                ORDER BY People.FirstName";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
