@@ -13,6 +13,8 @@ namespace BusinessLogicLayer
     {
         protected enum enMode { AddNew = 0, Update = 1 };
         protected enMode Mode;
+
+        public enum enGendor { Male = 0, Female = 1 };
         public int PersonID { set; get; }
         public string NationalNo { set; get; }
         public string FirstName { set; get; }
@@ -20,10 +22,7 @@ namespace BusinessLogicLayer
         public string ThirdName { set; get; }
         public string LastName { set; get; }
 
-        public string FullName 
-        {
-            get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; }
-        }
+        public string FullName => (string.IsNullOrEmpty(ThirdName)) ? (FirstName + " " + SecondName + " " + LastName) : (FirstName + " " + SecondName + " " + ThirdName + " " + LastName);
         public string Email { set; get; }
         public string Phone { set; get; }
         public string Address { set; get; }
@@ -125,6 +124,49 @@ namespace BusinessLogicLayer
         public static DataTable GetAllPeople()
         {
             return clsPeopleData.GetAllPeople();
+        }
+
+        private bool _AddNewPerson()
+        {
+            this.PersonID = clsPeopleData.AddNewPerson(this.FirstName, this.SecondName, this.ThirdName, this.LastName,
+                this.NationalNo, this.DateOfBirth, this.Gendor, this.Address, this.Phone, this.Email,
+                this.NationalityCountryID, this.ImagePath);
+
+            return (this.PersonID != -1);
+        }
+
+        private bool _UpdatePerson()
+        {
+            return clsPeopleData.UpdatePerson(this.PersonID, this.FirstName, this.SecondName, this.ThirdName, this.LastName,
+                this.NationalNo, this.DateOfBirth, this.Gendor, this.Address, this.Phone, this.Email,
+                this.NationalityCountryID, this.ImagePath);
+        }
+
+        public static bool DeletePerson(int PersonID)
+        {
+            return clsPeopleData.DeletePerson(PersonID);
+        }
+
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+                    if (_AddNewPerson())
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+                    return _UpdatePerson();
+            }
+
+            return false;
         }
     }
 }

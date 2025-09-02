@@ -188,34 +188,50 @@ namespace DataAccessLayer
 
             return isFound;
         }
-        public static int AddNewPerson(ref string NationalNo, ref string FirstName,
-            ref string SecondName, ref string ThirdName, ref string LastName,
-            ref string Email, ref string Phone, ref string Address,
-            ref DateTime DateOfBirth, ref int NationalityCountryID, ref string ImagePath)
+        public static int AddNewPerson(string FirstName, string SecondName,
+           string ThirdName, string LastName, string NationalNo, DateTime DateOfBirth,
+           short Gendor, string Address, string Phone, string Email,
+            int NationalityCountryID, string ImagePath)
         {
-            //this function will return the new Person ID if succeeded and -1 if not.
-            int ID = -1;
+            //this function will return the new person id if succeeded and -1 if not.
+            int PersonID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO People (NationalNo, FirstName, SecondName, ThirdName, LastName, Email, Phone, Address, DateOfBirth, NationalityCountryID, ImagePath)
-                 VALUES (@NationalNo, @FirstName, @SecondName, @ThirdName, @LastName, @Email, @Phone, @Address, @DateOfBirth, @NationalityCountryID, @ImagePath);
-                 SELECT SCOPE_IDENTITY();";
-
+            string query = @"INSERT INTO People (FirstName, SecondName, ThirdName,LastName,NationalNo,
+                                                   DateOfBirth,Gendor,Address,Phone, Email, NationalityCountryID,ImagePath)
+                             VALUES (@FirstName, @SecondName,@ThirdName, @LastName, @NationalNo,
+                                     @DateOfBirth,@Gendor,@Address,@Phone, @Email,@NationalityCountryID,@ImagePath);
+                             SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@NationalNo", NationalNo);
             command.Parameters.AddWithValue("@FirstName", FirstName);
             command.Parameters.AddWithValue("@SecondName", SecondName);
-            command.Parameters.AddWithValue("@ThirdName", ThirdName ?? (object)DBNull.Value);
+
+            if (ThirdName != "" && ThirdName != null)
+                command.Parameters.AddWithValue("@ThirdName", ThirdName);
+            else
+                command.Parameters.AddWithValue("@ThirdName", System.DBNull.Value);
+
             command.Parameters.AddWithValue("@LastName", LastName);
-            command.Parameters.AddWithValue("@Email", Email ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@Phone", Phone);
-            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
             command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+            command.Parameters.AddWithValue("@Gendor", Gendor);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@Phone", Phone);
+
+            if (Email != "" && Email != null)
+                command.Parameters.AddWithValue("@Email", Email);
+            else
+                command.Parameters.AddWithValue("@Email", System.DBNull.Value);
+
             command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            command.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(ImagePath) ? (object)DBNull.Value : ImagePath);
+
+            if (ImagePath != "" && ImagePath != null)
+                command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            else
+                command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
 
             try
             {
@@ -223,10 +239,9 @@ namespace DataAccessLayer
 
                 object result = command.ExecuteScalar();
 
-
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    ID = insertedID;
+                    PersonID = insertedID;
                 }
             }
 
@@ -241,59 +256,79 @@ namespace DataAccessLayer
                 connection.Close();
             }
 
-
-            return ID;
+            return PersonID;
         }
-        public static bool UpdatePerson(int PersonID, ref string NationalNo, ref string FirstName,
-            ref string SecondName, ref string ThirdName, ref string LastName,
-            ref string Email, ref string Phone, ref string Address,
-            ref DateTime DateOfBirth, ref int NationalityCountryID, ref string ImagePath)
+        public static bool UpdatePerson(int PersonID, string FirstName, string SecondName,
+           string ThirdName, string LastName, string NationalNo, DateTime DateOfBirth,
+           short Gendor, string Address, string Phone, string Email,
+            int NationalityCountryID, string ImagePath)
         {
 
             int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"Update  People  
-                            set NationalNo = @NationalNo,
-                                FirstName = @FirstName,
+                            set FirstName = @FirstName,
                                 SecondName = @SecondName,
-                                ThirdName = @ThirdName, 
-                                LastName = @LastName,
-                                Email = @Email,
-                                Phone = @Phone, 
-                                Address = @Address, 
+                                ThirdName = @ThirdName,
+                                LastName = @LastName, 
+                                NationalNo = @NationalNo,
                                 DateOfBirth = @DateOfBirth,
+                                Gendor=@Gendor,
+                                Address = @Address,  
+                                Phone = @Phone,
+                                Email = @Email, 
                                 NationalityCountryID = @NationalityCountryID,
-                                ImagePath = @ImagePath
+                                ImagePath =@ImagePath
                                 where PersonID = @PersonID";
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@PersonID", PersonID);
-                    command.Parameters.AddWithValue("@NationalNo", NationalNo);
-                    command.Parameters.AddWithValue("@FirstName", FirstName);
-                    command.Parameters.AddWithValue("@SecondName", SecondName);
-                    command.Parameters.AddWithValue("@ThirdName", ThirdName ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@LastName", LastName);
-                    command.Parameters.AddWithValue("@Email", Email ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Phone", Phone);
-                    command.Parameters.AddWithValue("@Address", Address);
-                    command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-                    command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-                    command.Parameters.AddWithValue("@ImagePath", string.IsNullOrEmpty(ImagePath) ? (object)DBNull.Value : ImagePath);
+            SqlCommand command = new SqlCommand(query, connection);
 
-                    try
-                    {
-                        connection.Open();
-                        rowsAffected = command.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log error
-                        return false;
-                    }
-                }
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@FirstName", FirstName);
+            command.Parameters.AddWithValue("@SecondName", SecondName);
+
+            if (ThirdName != "" && ThirdName != null)
+                command.Parameters.AddWithValue("@ThirdName", ThirdName);
+            else
+                command.Parameters.AddWithValue("@ThirdName", System.DBNull.Value);
+
+
+            command.Parameters.AddWithValue("@LastName", LastName);
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+            command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+            command.Parameters.AddWithValue("@Gendor", Gendor);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@Phone", Phone);
+
+            if (Email != "" && Email != null)
+                command.Parameters.AddWithValue("@Email", Email);
+            else
+                command.Parameters.AddWithValue("@Email", System.DBNull.Value);
+
+            command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+
+            if (ImagePath != "" && ImagePath != null)
+                command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            else
+                command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
+
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
             }
 
             return (rowsAffected > 0);
@@ -340,7 +375,6 @@ namespace DataAccessLayer
             }
             return dt;
             }
-
         public static bool DeletePerson(int PersonID)
         {
 
@@ -374,6 +408,72 @@ namespace DataAccessLayer
 
             return (rowsAffected > 0);
 
+        }
+        public static bool IsPersonExist(int PersonID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM People WHERE PersonID = @PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+        public static bool IsPersonExist(string NationalNo)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM People WHERE NationalNo = @NationalNo";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
         }
 
     }
