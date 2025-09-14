@@ -13,6 +13,23 @@
 *.userosscache
 *.sln.docstates
 
+# Ignore all bin and obj folders in the project
+**/bin/
+**/obj/
+
+# Ignore build files
+*.dll
+*.exe
+*.pdb
+*.log
+*.cache
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
