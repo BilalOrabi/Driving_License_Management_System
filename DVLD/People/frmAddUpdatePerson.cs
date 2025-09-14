@@ -111,7 +111,7 @@ namespace DVLD.People
                 rbFemale.Checked = true;
 
             // To show the name of the country
-            cbCountry.SelectedIndex = cbCountry.FindString(_Person.CountryInfo.CountryName);
+           // cbCountry.SelectedIndex = cbCountry.FindString(_Person.CountryInfo.CountryName);
         }
 
         private void _FillPersonObjectWithFieldsData()
