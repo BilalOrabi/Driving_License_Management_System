@@ -12,7 +12,7 @@ The Driving & Vehicle License Department (DVLD) system is designed to manage the
 6. Enter the username as 'admin' and the password as '1234' to log in.
 
 ## Technical Details  
-- **Framework**: WindForm (built on .Net 8)  
+- **Framework**: WinForms (built on .Net 4.8)  
 - **Programming Language**: C#  
 - **Data Access**: ADO.NET
 - **Architecture**: The system follows a **3-Tier Architecture**:  
