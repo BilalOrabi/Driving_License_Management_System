@@ -9,14 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer;
+using DVLD.Global_Classes;
 using DVLD.Properties;
 
 namespace DVLD.People
 {
     public partial class frmAddUpdatePerson : Form
     {
-        public delegate void DataBackEventHandler(int person_id);
+        // Declare a delegate
+        public delegate void DataBackEventHandler(object sender, int person_id);
+
+        // Declare an event using the delegate
         public event DataBackEventHandler DataBack;
+
         public enum enMode {AddNew = 1 ,Update = 2 }
         private enMode _Mode = enMode.AddNew;
         private int _PersonID = -1; 
@@ -26,7 +31,6 @@ namespace DVLD.People
             InitializeComponent();
             _Mode = enMode.AddNew;
         }
-
         public frmAddUpdatePerson(int person_id)
         {
             InitializeComponent();
@@ -91,7 +95,6 @@ namespace DVLD.People
 
             _ResetFields();
         }
-
         private void _FillFieldsWithPersonInfo()
         {
             lblPersonID.Text = _Person.PersonID.ToString();
@@ -111,9 +114,9 @@ namespace DVLD.People
                 rbFemale.Checked = true;
 
             // To show the name of the country
-           // cbCountry.SelectedIndex = cbCountry.FindString(_Person.CountryInfo.CountryName);
+           cbCountry.SelectedIndex = cbCountry.FindString(_Person.CountryInfo.CountryName);
         }
-
+        
         private void _FillPersonObjectWithFieldsData()
         {
             _Person.FirstName = txtFirstName.Text.Trim();
@@ -135,6 +138,33 @@ namespace DVLD.People
                 _Person.ImagePath = pbPersonImage.ImageLocation;
             else
                 _Person.ImagePath = "";
+
+        }
+        private void _SaveData()
+        {
+            _FillPersonObjectWithFieldsData();
+
+            if (_Person.Save())
+            {
+                lblTitle.Text = "Update Person";
+                this.Text = "Update Person";
+                lblPersonID.Text = _Person.PersonID.ToString();
+
+                // change form mode to Update
+                _Mode = enMode.Update;
+
+                MessageBox.Show("Data Saved Successfully", "Saved",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Trigger the event to send back data to the caller form
+
+                DataBack?.Invoke(this,_Person.PersonID);
+            }
+            else 
+            {
+                MessageBox.Show("Data Saved Failed", "Failed",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void _LoadData()
         {
@@ -210,6 +240,125 @@ namespace DVLD.People
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmAddUpdatePerson_Load(object sender, EventArgs e)
+        {
+            _ResetDefaultValues();
+
+            if(_Mode == enMode.Update)
+                _LoadData();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // ``this.ValidateChildren()`` it triggers the (Validating event) for each child control that supports validation.
+
+            if (!this.ValidateChildren())
+            {
+                //Here we don't continue because the form is not valid
+                MessageBox.Show("Some fileds are not valid!,put the mouse over the red icon to see the error");
+                return;
+            }
+            _SaveData();
+            
+
+        }
+        private void rbMale_Click(object sender, EventArgs e)
+        {
+            //change the defualt image to Male incase there is no image set.
+            if (pbPersonImage.ImageLocation == null)
+                pbPersonImage.Image = Resources.Male_512;
+        }
+
+        private void rbFemale_Click(object sender, EventArgs e)
+        {
+            //change the defualt image to Female incase there is no image set.
+            if (pbPersonImage.ImageLocation == null)
+                pbPersonImage.Image = Resources.Female_512;
+        }
+
+        private void ValidateEmptyTextBox(object sender, CancelEventArgs e)
+        {
+            TextBox Temp = ((TextBox)sender);
+            if (string.IsNullOrEmpty(Temp.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(Temp, "This filed is required!");
+            }
+            else
+            {
+                errorProvider1.SetError(Temp, null);
+            }
+
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            // no need for validtate incase it's empty
+            if (txtEmail.Text.Trim() == "")
+                return;
+
+            if (!clsValidation.ValidateEmail(txtEmail.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtEmail, "Invalid Email Address Format");
+            }
+            else
+            {
+                errorProvider1.SetError(txtEmail, null);
+            }
+        }
+
+        private void txtNationalNo_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNationalNo.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtNationalNo, "This field is required");
+                return;
+            }
+            else 
+            {
+                errorProvider1.SetError (txtNationalNo, null);
+            }
+
+            //Make sure the national number is not used by another person
+            if (txtNationalNo.Text != _Person.NationalNo && clsPeople.isPersonExist(txtNationalNo.Text.Trim()))
+            {
+                errorProvider1.SetError(txtNationalNo, "National Number is used for another person!");
+            }
+            else
+            {
+                errorProvider1.SetError(txtNationalNo, null);
+            }
+        }
+
+        private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Process the selected file
+                string selectedFilePath = openFileDialog1.FileName;
+                pbPersonImage.Load(selectedFilePath);
+                llRemoveImage.Visible = true;
+            }
+        }
+
+        private void llRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            pbPersonImage.ImageLocation = null;
+
+            if (rbMale.Checked)
+                pbPersonImage.Image = Resources.Male_512;
+            else
+                pbPersonImage.Image = Resources.Female_512;
+
+            llRemoveImage.Visible = false;
         }
     }
 }

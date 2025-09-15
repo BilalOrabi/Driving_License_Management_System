@@ -28,12 +28,18 @@ namespace BusinessLogicLayer
         public string Address { set; get; }
         public byte Gendor { set; get; }
         public int NationalityCountryID { set; get; }
-        public DateTime DateOfBirth { set; get; }
-        public string ImagePath { set; get; }
 
-       // public clsCountry CountryInfo;
+        public clsCountry CountryInfo;
+        public DateTime DateOfBirth { set; get; }
 
         private string _ImagePath;
+        public string ImagePath 
+        {
+            get { return _ImagePath; }
+            set { _ImagePath = value; }
+        }
+
+        
 
         public clsPeople()
         {
@@ -73,6 +79,8 @@ namespace BusinessLogicLayer
             this.Email = email;
             this.NationalityCountryID = nationalityCountryID;
             this.ImagePath = imagePath;
+
+            this.CountryInfo = clsCountry.Find(nationalityCountryID);
         }
 
         public static clsPeople Find(int PersonID)
@@ -115,17 +123,12 @@ namespace BusinessLogicLayer
                                 );
 
             if (IsFound)
-
+                //we return new object of that person with the right data
                 return new clsPeople(PersonID, FirstName, SecondName, ThirdName, LastName,
                           NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
             else
                 return null;
         }
-        public static DataTable GetAllPeople()
-        {
-            return clsPeopleData.GetAllPeople();
-        }
-
         private bool _AddNewPerson()
         {
             this.PersonID = clsPeopleData.AddNewPerson(this.FirstName, this.SecondName, this.ThirdName, this.LastName,
@@ -145,6 +148,21 @@ namespace BusinessLogicLayer
         public static bool DeletePerson(int PersonID)
         {
             return clsPeopleData.DeletePerson(PersonID);
+        }
+
+        public static DataTable GetAllPeople()
+        {
+            return clsPeopleData.GetAllPeople();
+        }
+
+        public static bool isPersonExist(int ID)
+        {
+            return clsPeopleData.IsPersonExist(ID);
+        }
+
+        public static bool isPersonExist(string NationalNo)
+        {
+            return clsPeopleData.IsPersonExist(NationalNo);
         }
 
         public bool Save()
