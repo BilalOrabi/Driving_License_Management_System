@@ -101,8 +101,8 @@ namespace BusinessLogicLayer
 
             if (IsFound)
                 //we return new object of that person with the right data
-                return new clsPeople(PersonID, FirstName, SecondName, ThirdName, LastName,
-                          NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+                return new clsPeople(PersonID, NationalNo, FirstName, SecondName, ThirdName,
+                          LastName, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
             else
                 return null;
         }

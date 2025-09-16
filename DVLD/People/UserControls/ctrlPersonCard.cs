@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,15 @@ namespace DVLD
 {
     public partial class ctrlPersonCard : UserControl
     {
-        clsPeople _Person;
-        private int _PersonID;
-        public ctrlPersonCard(int PersonID)
+        private clsPeople _Person;
+        private int _PersonID = -1;
+
+        public int PersonID => _PersonID;   
+        public clsPeople SelectedPersonInfo => _Person;
+      
+        public ctrlPersonCard()
         {
             InitializeComponent();
-            this._PersonID = PersonID;
         }
         public void LoadPersonInfo(int PersonID)
         {
@@ -32,7 +36,7 @@ namespace DVLD
             else
             {
                 ResetPersonInfo();
-                MessageBox.Show("No Person with National No. = " + PersonID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No Person with PersonID. = " + PersonID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -50,6 +54,25 @@ namespace DVLD
                 MessageBox.Show("No Person with National No. = " + NationalNo.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void _LoadPersonImage()
+        {
+            if (_Person.Gendor == 0)
+                pbPersonImage.Image = Resources.Male_512;
+            else
+                pbPersonImage.Image = Resources.Female_512;
+            string ImagePath = _Person.ImagePath;
+            if (ImagePath != "")
+            {
+                if (File.Exists(ImagePath))
+                    pbPersonImage.ImageLocation = ImagePath;
+                else
+                    MessageBox.Show("Could not find this image: = " + ImagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+
+        }
+
         private void _FillPersonInfo()
         {
             llEditPersonInfo.Enabled = true;
@@ -63,7 +86,7 @@ namespace DVLD
             lblDateOfBirth.Text = _Person.DateOfBirth.ToShortDateString();
             lblCountry.Text = clsCountry.Find(_Person.NationalityCountryID).CountryName;
             lblAddress.Text = _Person.Address;
-            //_LoadPersonImage();
+            _LoadPersonImage();
         }
 
         public void ResetPersonInfo()
@@ -88,6 +111,7 @@ namespace DVLD
             frmAddUpdatePerson frm = new frmAddUpdatePerson(_PersonID);
             frm.ShowDialog();
 
+            //refresh
             LoadPersonInfo(_PersonID);
         }
     }

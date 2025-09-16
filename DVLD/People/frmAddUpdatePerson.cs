@@ -219,27 +219,22 @@ namespace DVLD.People
                     // then we copy the new image to the image folder after we rename it
                     string SourceImageFile = pbPersonImage.ImageLocation.ToString();
 
-                    //if (clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
-                    //{
-                    //    pbPersonImage.ImageLocation = SourceImageFile;
+                    if (clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
+                    {
+                        pbPersonImage.ImageLocation = SourceImageFile;
 
-                    //    return true;
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Error Copying Image File", "Error",
-                    //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    return false;
-                    //}
+                       return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Copying Image File", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                 }
             }
 
             return true;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void frmAddUpdatePerson_Load(object sender, EventArgs e)
@@ -250,20 +245,7 @@ namespace DVLD.People
                 _LoadData();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            // ``this.ValidateChildren()`` it triggers the (Validating event) for each child control that supports validation.
-
-            if (!this.ValidateChildren())
-            {
-                //Here we don't continue because the form is not valid
-                MessageBox.Show("Some fileds are not valid!,put the mouse over the red icon to see the error");
-                return;
-            }
-            _SaveData();
-            
-
-        }
+       
         private void rbMale_Click(object sender, EventArgs e)
         {
             //change the defualt image to Male incase there is no image set.
@@ -359,6 +341,28 @@ namespace DVLD.People
                 pbPersonImage.Image = Resources.Female_512;
 
             llRemoveImage.Visible = false;
+        }
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // ``this.ValidateChildren()`` it triggers the (Validating event) for each child control that supports validation.
+
+            if (!this.ValidateChildren())
+            {
+                //Here we don't continue because the form is not valid
+                MessageBox.Show("Some fileds are not valid!,put the mouse over the red icon to see the error");
+                return;
+            }
+
+            if (!_HandlePersonImage())
+                return;
+
+            _SaveData();
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
