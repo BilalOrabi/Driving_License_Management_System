@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer;
+using DVLD.User;
 
 namespace DVLD
 {
@@ -24,5 +25,10 @@ namespace DVLD
             frm.ShowDialog();
         }
 
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmListUsers();
+            frm.ShowDialog();
+        }
     }
 }
