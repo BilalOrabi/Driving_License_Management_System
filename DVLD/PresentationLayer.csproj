@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global Classes\clsGlobal.cs" />
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\ctrlUserCard1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,6 +129,9 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\ctrlUserCard1.resx">
       <DependentUpon>ctrlUserCard1.cs</DependentUpon>
     </EmbeddedResource>
@@ -577,6 +587,14 @@
   <ItemGroup>
     <None Include="Resources\digital-print-1198862_1280.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\government_icon_standalone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-square_18921105.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key-hole_6268585.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
