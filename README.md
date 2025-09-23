@@ -74,3 +74,5 @@ The system allows for inquiries about licenses held by an individual using their
 
 ## Conclusion  
 The DVLD system streamlines the process of managing driving licenses, ensuring that all drivers meet the necessary safety standards.
+
+![Dashboard](Images/Screenshot 2025-09-14 191310.png)
