@@ -53,5 +53,10 @@ namespace DVLD
             _frmLogin.Show();
             this.Close();
         }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
