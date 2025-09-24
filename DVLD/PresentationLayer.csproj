@@ -596,5 +596,8 @@
   <ItemGroup>
     <None Include="Resources\key-hole_6268585.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Applications\Applications Types\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
