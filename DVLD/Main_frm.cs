@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer;
+using DVLD.Applications.Applications_Types;
 using DVLD.Global_Classes;
 using DVLD.Login;
 using DVLD.User;
@@ -54,5 +55,12 @@ namespace DVLD
             this.Close();
         }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmListApplicationTypes frm = new frmListApplicationTypes();
+            frm.ShowDialog();
+        }
+
+  
     }
 }
