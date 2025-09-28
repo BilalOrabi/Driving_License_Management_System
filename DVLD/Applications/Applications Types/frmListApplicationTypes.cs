@@ -43,8 +43,11 @@ namespace DVLD.Applications.Applications_Types
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // Form frm = new frmEditApplicationTypes(clsGlobal.CurrentUser.);
-            //frm.ShowDialog();
+            Form frm = new frmEditApplicationTypes((int)dgvApplicationTypes.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+            frmListApplicationTypes_Load(null, null);
         }
+
+       
     }
 }

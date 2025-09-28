@@ -72,11 +72,11 @@ namespace DataAccessLayer
             }
             return (rowsAffected > 0);
         }
-
+    
         public static bool GetApplicationTypeByID(int ApplicationTypeID ,ref string Title , ref float Fees)
         {
-            string query = @"select * from ApplicationTypes" +
-                "where ApplicationTypeID = @ApplicationTypeID";
+            string query = @"select * from ApplicationTypes where ApplicationTypeID = @ApplicationTypeID";
+
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))

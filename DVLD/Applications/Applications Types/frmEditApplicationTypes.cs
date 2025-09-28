@@ -19,7 +19,7 @@ namespace DVLD.Applications.Applications_Types
         public frmEditApplicationTypes(int id)
         {
             InitializeComponent();
-            _ID = id;
+            _ID = id;   
         }
         private void _LoadApplicationData()
         {

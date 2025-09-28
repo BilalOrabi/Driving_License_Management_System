@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pbApplicationTypesmage = new System.Windows.Forms.PictureBox();
@@ -118,14 +118,14 @@
             this.dgvApplicationTypes.MultiSelect = false;
             this.dgvApplicationTypes.Name = "dgvApplicationTypes";
             this.dgvApplicationTypes.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvApplicationTypes.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvApplicationTypes.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvApplicationTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvApplicationTypes.Size = new System.Drawing.Size(679, 354);
             this.dgvApplicationTypes.TabIndex = 113;
@@ -138,7 +138,7 @@
             this.editToolStripMenuItem,
             this.toolStripSeparator1});
             this.cmsApplicationTypes.Name = "contextMenuStrip1";
-            this.cmsApplicationTypes.Size = new System.Drawing.Size(202, 76);
+            this.cmsApplicationTypes.Size = new System.Drawing.Size(202, 54);
             // 
             // toolStripSeparator2
             // 
@@ -173,7 +173,7 @@
             this.Controls.Add(this.dgvApplicationTypes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListApplicationTypes";
-            this.Text = "frmListApplicationTypes";
+            this.Text = "Manage Application Types";
             this.Load += new System.EventHandler(this.frmListApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbApplicationTypesmage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();

@@ -162,7 +162,7 @@ namespace DVLD
 
             if (txtFilterValue.Text.Trim() == "" || cbFilterBy.Text == "None")
             {
-                _AllPeople.DefaultView.RowFilter = "";
+                _dtPeople.DefaultView.RowFilter = "";
                 lblRecordNumber.Text = dgvALLPeople.RowCount.ToString();
                 return;
             }
@@ -170,13 +170,13 @@ namespace DVLD
             if (FilterColumn == "PersonID")
             {
                 if (int.TryParse(txtFilterValue.Text.Trim(), out int id))
-                    _AllPeople.DefaultView.RowFilter = $"[{FilterColumn}] = {id}";
+                    _dtPeople.DefaultView.RowFilter = $"[{FilterColumn}] = {id}";
                 else
-                    _AllPeople.DefaultView.RowFilter = "";
+                    _dtPeople.DefaultView.RowFilter = "";
 
             }
             else
-                _AllPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilterValue.Text.Trim());
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilterValue.Text.Trim());
 
             lblRecordNumber.Text = dgvALLPeople.RowCount.ToString();
 
