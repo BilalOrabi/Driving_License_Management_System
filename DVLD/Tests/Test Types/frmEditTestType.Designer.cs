@@ -60,6 +60,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(282, 98);
             this.txtDescription.TabIndex = 166;
+            this.txtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.txtDescription_Validating);
             // 
             // label3
             // 
@@ -114,6 +115,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(282, 20);
             this.txtTitle.TabIndex = 155;
+            this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txtTitle_Validating);
             // 
             // label1
             // 
@@ -146,6 +148,7 @@
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(282, 20);
             this.txtFees.TabIndex = 156;
+            this.txtFees.Validating += new System.ComponentModel.CancelEventHandler(this.txtFees_Validating);
             // 
             // errorProvider1
             // 
@@ -165,6 +168,7 @@
             this.btnSave.TabIndex = 164;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -180,6 +184,7 @@
             this.btnClose.TabIndex = 165;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pictureBox1
             // 
@@ -237,6 +242,7 @@
             this.Name = "frmEditTestType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Update Test Type";
+            this.Load += new System.EventHandler(this.frmEditTestType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();

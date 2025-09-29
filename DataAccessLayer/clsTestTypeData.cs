@@ -11,44 +11,56 @@ namespace DataAccessLayer
 {
     public class clsTestTypeData
     {
+
         public static bool GetTestTypeInfoByID(int TestTypeID,
           ref string TestTypeTitle, ref string TestDescription, ref float TestFees)
         {
             bool isFound = false;
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
             string query = "SELECT * FROM TestTypes WHERE TestTypeID = @TestTypeID";
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
-                    try
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                // The record was found
-                                isFound = true;
+            SqlCommand command = new SqlCommand(query, connection);
 
-                                TestTypeTitle = (string)reader["TestTypeTitle"];
-                                TestDescription = (string)reader["TestTypeDescription"];
-                                TestFees = Convert.ToSingle(reader["TestTypeFees"]);
-                            }
-                            else
-                            {
-                                // The record not was found
-                                isFound = false;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // LOGGING logic should be here
-                    }
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    // The record was found
+                    isFound = true;
+
+                    TestTypeTitle = (string)reader["TestTypeTitle"];
+                    TestDescription = (string)reader["TestTypeDescription"];
+                    TestFees = Convert.ToSingle(reader["TestTypeFees"]);
+
                 }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
             }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
             return isFound;
         }
 

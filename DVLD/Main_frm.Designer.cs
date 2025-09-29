@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.appToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +49,7 @@
             this.currentUserInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -68,18 +68,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1596, 72);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::DVLD.Properties.Resources.digital_print_1198862_1280;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 72);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1596, 742);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // appToolStripMenuItem
             // 
@@ -95,7 +83,6 @@
             this.appToolStripMenuItem.Name = "appToolStripMenuItem";
             this.appToolStripMenuItem.Size = new System.Drawing.Size(194, 68);
             this.appToolStripMenuItem.Text = "Applications";
-            
             // 
             // mToolStripMenuItem
             // 
@@ -200,6 +187,7 @@
             this.manageTestTypesToolStripMenuItem.Name = "manageTestTypesToolStripMenuItem";
             this.manageTestTypesToolStripMenuItem.Size = new System.Drawing.Size(359, 70);
             this.manageTestTypesToolStripMenuItem.Text = "Manage Test Types";
+            this.manageTestTypesToolStripMenuItem.Click += new System.EventHandler(this.manageTestTypesToolStripMenuItem_Click);
             // 
             // peopleToolStripMenuItem
             // 
@@ -269,6 +257,17 @@
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(249, 38);
             this.signOutToolStripMenuItem.Text = "Sign &Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::DVLD.Properties.Resources.digital_print_1198862_1280;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 72);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1596, 742);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
