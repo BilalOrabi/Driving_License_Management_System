@@ -18,11 +18,9 @@ namespace DVLD
 {
     public partial class frmMain: Form
     {
-        private frmLogin _frmLogin;
-        public frmMain(frmLogin frm)
+        public frmMain()
         {
             InitializeComponent();
-            _frmLogin = frm;
         }
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,7 +50,7 @@ namespace DVLD
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsGlobal.CurrentUser = null;
-            _frmLogin.Show();
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 

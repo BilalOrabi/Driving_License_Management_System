@@ -49,9 +49,11 @@ namespace DVLD.Login
                 }
 
                 clsGlobal.CurrentUser = user;
-                this.Hide();
-                frmMain frm = new frmMain(this);
-                frm.ShowDialog();
+                //this.Hide();
+                //frmMain frm = new frmMain(this);
+                //frm.ShowDialog();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
 
             }
             else 

@@ -14,6 +14,7 @@ namespace DataAccessLayer
         {
             string query = "select * from ApplicationTypes";
             DataTable dt = new DataTable();
+
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString)) 
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
