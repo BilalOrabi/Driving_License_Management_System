@@ -77,7 +77,7 @@ The DVLD system streamlines the process of managing driving licenses, ensuring t
 
 ## Screenshots of the Project
 
-![Screenshot](Database/Screenshot 2025-09-25 023851.png)
+![Screenshot](Database/Screenshot%202025-09-25%20023851.png)
 
 ![Screenshot](Images/Screenshot%202025-09-23%20111523.png)
 
